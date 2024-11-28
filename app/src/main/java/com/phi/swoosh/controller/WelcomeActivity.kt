@@ -1,4 +1,4 @@
-package com.phi.swoosh
+package com.phi.swoosh.controller
 
 import android.content.Intent
 import android.os.Bundle
