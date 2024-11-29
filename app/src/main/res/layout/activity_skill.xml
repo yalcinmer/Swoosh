@@ -70,7 +70,8 @@
                 android:textOff="@string/beginner"
                 android:textOn="@string/beginner"
                 android:layout_marginEnd="16dp"
-                tools:ignore="VisualLintButtonSize" android:onClick="onBeginnerClicked"/>
+                tools:ignore="VisualLintButtonSize"
+                android:onClick="onBeginnerClicked"/>
 
         <ToggleButton
                 android:layout_width="wrap_content"
@@ -83,7 +84,9 @@
                 android:textOff="@string/baller"
                 android:textOn="@string/baller"
                 android:layout_marginStart="16dp"
-                tools:ignore="VisualLintButtonSize" android:onClick="onBallerClicked"/>
+                tools:ignore="VisualLintButtonSize"
+                android:onClick="onBallerClicked"/>
+
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -101,6 +104,7 @@
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/montserrat_semibold"
             android:textSize="18sp"
-            tools:ignore="VisualLintButtonSize" android:onClick="finishLeague"/>
+            tools:ignore="VisualLintButtonSize"
+            android:onClick="finishLeague"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

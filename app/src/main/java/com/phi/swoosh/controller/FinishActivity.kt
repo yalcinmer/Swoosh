@@ -3,11 +3,11 @@ package com.phi.swoosh.controller
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.phi.swoosh.R
 import com.phi.swoosh.databinding.ActivityFinishBinding
-import com.phi.swoosh.utilities.EXTRA_LEAGUE
-import com.phi.swoosh.utilities.EXTRA_SKILL
+import com.phi.swoosh.model.Player
+import com.phi.swoosh.utilities.EXTRA_PLAYER
 
+@Suppress("DEPRECATION")
 class FinishActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFinishBinding
@@ -18,8 +18,7 @@ class FinishActivity : AppCompatActivity() {
         binding = ActivityFinishBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val league = intent.getStringExtra(EXTRA_LEAGUE)
-        val skill = intent.getStringExtra(EXTRA_SKILL)
-        binding.searchLeagueText.text = "Looking for $league $skill league near you..."
+        val player = intent.getParcelableExtra<Player>(EXTRA_PLAYER)
+        binding.searchLeagueText.text = "Looking for ${player?.league} ${player?.skill} league near you..."
     }
 }

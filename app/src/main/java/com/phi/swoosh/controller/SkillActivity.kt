@@ -5,15 +5,25 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import com.phi.swoosh.utilities.EXTRA_LEAGUE
 import com.phi.swoosh.databinding.ActivitySkillBinding
-import com.phi.swoosh.utilities.EXTRA_SKILL
+import com.phi.swoosh.model.Player
+import com.phi.swoosh.utilities.EXTRA_PLAYER
 
+@Suppress("DEPRECATION")
 class SkillActivity : BaseActivity() {
 
-    private var league = ""
-    private var skill = ""
+    private lateinit var player : Player
     private lateinit var binding: ActivitySkillBinding
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelable(EXTRA_PLAYER, player)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        player = savedInstanceState.getParcelable(EXTRA_PLAYER)!!
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,24 +31,23 @@ class SkillActivity : BaseActivity() {
         binding = ActivitySkillBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        league = intent.getStringExtra(EXTRA_LEAGUE).toString()
+        player = intent.getParcelableExtra(EXTRA_PLAYER)!!
     }
 
     fun onBeginnerClicked(view: View) {
         binding.ballerBtn.isChecked = false
-        skill = "beginner"
+        player.skill = "beginner"
     }
 
     fun onBallerClicked(view: View) {
         binding.beginnerBtn.isChecked = false
-        skill = "baller"
+        player.skill = "baller"
     }
 
     fun finishLeague(view: View) {
-        if(skill != "") {
+        if(player.skill != "") {
             val intent = Intent(this@SkillActivity, FinishActivity::class.java)
-            intent.putExtra(EXTRA_LEAGUE, league)
-            intent.putExtra(EXTRA_SKILL, skill)
+            intent.putExtra(EXTRA_PLAYER, player)
             startActivity(intent)
         } else {
             Toast.makeText(this@SkillActivity, "Please select a skill level", Toast.LENGTH_LONG).show()
